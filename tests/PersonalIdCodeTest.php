@@ -21,9 +21,26 @@ use PHPUnit\Framework\TestCase;
 
 final class PersonalIdCodeTests extends TestCase
 {
+    /**
+     * Instance of \RKD\PersonalIdCode
+     */
+    private $id;
+
+    protected function setUp() : void
+    {
+        $this->id = new PersonalIdCode('39002102761');
+    }
+
     public function testCanInitClass() : void
     {
-        $id = new PersonalIdCode('39002102761');
-        $this->assertInstanceOf(PersonalIdCode::class, $id);
+        $this->assertInstanceOf(PersonalIdCode::class, $this->id);
+    }
+
+    public function testCanGetGender() : void
+    {
+        $this->assertEquals(PersonalIdCode::GENDER_MALE, $this->id->getGender());
+
+        $femaleId = new PersonalIdCode('49002102761');
+        $this->assertEquals(PersonalIdCode::GENDER_FEMALE, $femaleId->getGender());
     }
 }

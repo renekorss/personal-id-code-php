@@ -14,6 +14,12 @@ namespace RKD\PersonalIdCode;
 class PersonalIdCode
 {
     /**
+     * Gender constants
+     */
+    const GENDER_MALE = 'male';
+    const GENDER_FEMALE = 'female';
+
+    /**
      * Personal ID code
      *
      * @var string
@@ -26,5 +32,20 @@ class PersonalIdCode
     public function __construct(string $code)
     {
         $this->code = $code;
+    }
+
+    /**
+     * Get person gender
+     *
+     * @return string Person gender
+     */
+    public function getGender() : string
+    {
+        // Code's first number represents person gender
+        // Odd number for male and even nubmer for female
+        $genderNo = substr($this->code, 0, 1);
+        $modulo = $genderNo % 2;
+  
+        return $modulo === 0 ? self::GENDER_FEMALE : self::GENDER_MALE;
     }
 }
