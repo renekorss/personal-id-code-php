@@ -3,7 +3,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/634a0a6cf7c84e74aeedb2989bc299c5)](https://www.codacy.com/app/renekorss/personal-id-code-php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=renekorss/personal-id-code-php&amp;utm_campaign=Badge_Grade)
 [![Latest Stable Version](https://poser.pugx.org/renekorss/personal-id-code-php/v/stable)](https://packagist.org/packages/renekorss/personal-id-code-php)
 [![Total Downloads](https://poser.pugx.org/renekorss/personal-id-code-php/downloads)](https://packagist.org/packages/renekorss/personal-id-code-php)
-[![License](http://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 # Personal ID code
 Estonian personal ID code validator and processor
