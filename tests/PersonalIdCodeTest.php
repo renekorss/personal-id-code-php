@@ -24,21 +24,21 @@ final class PersonalIdCodeTests extends TestCase
     /**
      * Instance of \RKD\PersonalIdCode
      */
-    private $id;
+    private $personalCodeObj;
 
     protected function setUp() : void
     {
-        $this->id = new PersonalIdCode('39002102761');
+        $this->personalCodeObj = new PersonalIdCode('39002102761');
     }
 
     public function testCanInitClass() : void
     {
-        $this->assertInstanceOf(PersonalIdCode::class, $this->id);
+        $this->assertInstanceOf(PersonalIdCode::class, $this->personalCodeObj);
     }
 
     public function testCanGetGender() : void
     {
-        $this->assertEquals(PersonalIdCode::GENDER_MALE, $this->id->getGender());
+        $this->assertEquals(PersonalIdCode::GENDER_MALE, $this->personalCodeObj->getGender());
 
         $femaleId = new PersonalIdCode('49002102761');
         $this->assertEquals(PersonalIdCode::GENDER_FEMALE, $femaleId->getGender());
