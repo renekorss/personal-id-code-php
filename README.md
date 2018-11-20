@@ -8,7 +8,7 @@
 # Personal ID code
 Estonian personal ID code validator and processor
 
-# Install 
+## Install 
 
 ````bash
 composer require renekorss/personal-id-code-php
