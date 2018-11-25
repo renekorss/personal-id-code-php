@@ -1,6 +1,6 @@
 <?php
 /**
- * RKD Blockchain.
+ * RKD Personal ID code.
  *
  * @link https://github.com/renekorss/personal-id-code-php/
  *
@@ -11,13 +11,24 @@
 
 namespace RKD\PersonalIdCode;
 
+/**
+ * Personal ID code class
+ *
+ * @author Rene Korss <rene.korss@gmail.com>
+ */
 class PersonalIdCode
 {
-    /**
-     * Gender constants
-     */
+    // Gender constants
     const GENDER_MALE = 'male';
     const GENDER_FEMALE = 'female';
+
+    // Default formats
+    const FORMAT_YEAR_DEFAULT = 'Y';
+    const FORMAT_MONTH_DEFAULT = 'm';
+    const FORMAT_DAY_DEFAULT = 'd';
+
+    // Regex to validate personal code
+    const PERSONAL_CODE_REGEX = '/^[1-6][0-9]{2}[0-1][0-9][0-9]{2}[0-9]{4}$/';
 
     /**
      * Personal ID code
@@ -27,7 +38,16 @@ class PersonalIdCode
     private $code = null;
 
     /**
+     * Birth date
+     *
+     * @var \Datetime
+     */
+    private $birthDate = null;
+
+    /**
      * Constructor
+     *
+     * @param string $code Personal identification code
      */
     public function __construct(string $code)
     {
@@ -50,53 +70,167 @@ class PersonalIdCode
     }
 
     /**
-     * Get person birthday as \Datetime object
+     * Get person birthday as Datetime object
      *
      * @return \Datetime Person birthday
      */
     public function getBirthDate() : \Datetime
     {
-        // @TODO
+        if (is_null($this->birthDate)) {
+            $year = substr($this->code, 1, 2);
+            $month = substr($this->code, 3, 2);
+            $day = substr($this->code, 5, 2);
+
+            $this->birthDate = new \Datetime($year.'-'.$month.'-'.$day);
+        }
+
+        return $this->birthDate;
     }
 
     /**
      * Get person age
      *
+     * @param \Datetime $date Optional \Datetime from which to calculate age
+     *
      * @return int Person age
      */
-    public function getAge() : int
+    public function getAge(\Datetime $date = null) : int
     {
-        // @TODO
+        if (is_null($date)) {
+            $date = new \Datetime();
+        }
+
+        return $date->diff($this->getBirthDate())->y;
+    }
+
+    /**
+     * Get person birth century
+     *
+     * @return int Birth century
+     */
+    public function getBirthCentury() : int
+    {
+        $firstNo = substr($this->code, 0, 1);
+        return 1700 + ceil($firstNo / 2) * 100;
     }
 
     /**
      * Get birth year
      *
-     * @return int Person birth year
+     * @param string $format Desired format. Defaults to 'Y', e.g 2018
+     *
+     * @return string Person birth year
      */
-    public function getBirthYear() : int
+    public function getBirthYear($format = self::FORMAT_YEAR_DEFAULT) : string
     {
-        // @TODO
+        $allowedFormats = ['L', 'o', 'Y', 'y'];
+        if (!in_array($format, $allowedFormats)) {
+            throw new \InvalidArgumentException(
+                'Not allowed year format. Allowed values are: '.implode($allowedFormats)
+            );
+        }
+
+        return $this->getBirthDate()->format($format);
     }
 
     /**
      * Get birth month
      *
-     * @return int Person birth month
+     * @param string $format Desired format. Defaults to 'm', e.g 05
+     *
+     * @return string Person birth month
      */
-    public function getBirthMonth() : int
+    public function getBirthMonth($format = self::FORMAT_MONTH_DEFAULT) : string
     {
-        // @TODO
+        $allowedFormats = ['F', 'm', 'M', 'n', 't'];
+        if (!in_array($format, $allowedFormats)) {
+            throw new \InvalidArgumentException(
+                'Not allowed month format. Allowed values are: '.implode($allowedFormats)
+            );
+        }
+
+        return $this->getBirthDate()->format($format);
     }
 
     /**
      * Get birth day
      *
-     * @return int Person birth day
+     * @param string $format Desired format. Defaults to 'd', e.g 07
+     *
+     * @return string Person birth day
      */
-    public function getBirthDay() : int
+    public function getBirthDay($format = self::FORMAT_DAY_DEFAULT) : string
     {
-        // @TODO
+        $allowedFormats = ['d', 'D', 'j', 'l', 'N', 'S', 'w', 'z'];
+        if (!in_array($format, $allowedFormats)) {
+            throw new \InvalidArgumentException(
+                'Not allowed day format. Allowed values are: '.implode($allowedFormats)
+            );
+        }
+
+        return $this->getBirthDate()->format($format);
+    }
+
+    /**
+     * Get hospital where person presumably was born
+     *
+     * @return string Hospital name
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
+    public function getHospital()
+    {
+        /*
+         * @source https://et.wikipedia.org/wiki/Isikukood#Haigla_tunnus
+         *
+         * 001...010 = Kuressaare Haigla
+         * 011...019 = Tartu Ülikooli Naistekliinik, Tartumaa, Tartu
+         * 021...220 = Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla
+         * 221...270 = Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)
+         * 271...370 = Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla
+         * 371...420 = Narva Haigla
+         * 421...470 = Pärnu Haigla
+         * 471...490 = Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla
+         * 491...520 = Järvamaa Haigla (Paide)
+         * 521...570 = Rakvere, Tapa haigla
+         * 571...600 = Valga Haigla
+         * 601...650 = Viljandi Haigla
+         * 651...710? = Lõuna-Eesti Haigla (Võru), Põlva Haigla
+         */
+
+        $hospitalCode = substr($this->code, -4, 3);
+
+        if ($hospitalCode < 11) {
+            return 'Kuressaare Haigla';
+        } elseif ($hospitalCode < 19) {
+            return 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu';
+        } elseif ($hospitalCode < 220) {
+            return 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu';
+        } elseif ($hospitalCode < 270) {
+            return 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)';
+        } elseif ($hospitalCode < 370) {
+            return 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla';
+        } elseif ($hospitalCode < 420) {
+            return 'Narva Haigla';
+        } elseif ($hospitalCode < 470) {
+            return 'Pärnu Haigla';
+        } elseif ($hospitalCode < 490) {
+            return 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla';
+        } elseif ($hospitalCode < 520) {
+            return 'Järvamaa Haigla (Paide)';
+        } elseif ($hospitalCode < 570) {
+            return 'Rakvere, Tapa haigla';
+        } elseif ($hospitalCode < 600) {
+            return 'Valga Haigla';
+        } elseif ($hospitalCode < 650) {
+            return 'Viljandi Haigla';
+        } elseif ($hospitalCode < 710) {
+            return 'Lõuna-Eesti Haigla (Võru), Põlva Haigla';
+        } elseif ($hospitalCode >= 950) {
+            return 'Väljaspool Eestit';
+        }
+
+        return 'Teadmata';
     }
 
     /**
@@ -106,6 +240,56 @@ class PersonalIdCode
      */
     public function validate() : bool
     {
-        // @TODO
+        if (!is_string($this->code)) {
+            return false;
+        }
+
+        // Personal code is 11 digits long
+        if (strlen($this->code) !== 11) {
+            return false;
+        }
+
+        // Validate against regex
+        if (!preg_match(self::PERSONAL_CODE_REGEX, $this->code)) {
+            return false;
+        }
+
+        // Check control number
+        $controlNumber = (int)substr($this->code, -1);
+        if ($controlNumber !== $this->getControlNumber()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Get personal code control number
+     */
+    private function getControlNumber()
+    {
+        $total = 0;
+        for ($i = 0; $i < 10; $i++) {
+            $multiplier = $i + 1;
+            $total += substr($this->code, $i, 1) * ($multiplier > 9 ? 1 : $multiplier);
+        }
+
+        $modulo = $total % 11;
+
+        // Second round
+        if ($modulo === 10) {
+            for ($i = 0; $i < 10; $i++) {
+                $multiplier = $i + 3;
+                $total += substr($this->code, $i, 1) * ($multiplier > 9 ? $multiplier - 9 : $multiplier);
+            }
+
+            $modulo = $total % 11;
+
+            if ($modulo === 10) {
+                $modulo = 0;
+            }
+        }
+
+        return $modulo;
     }
 }
