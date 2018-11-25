@@ -137,16 +137,31 @@ final class PersonalIdCodeTests extends TestCase
 
     public function testCanGetHospital() : void
     {
-        $this->assertEquals('Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla', $this->personalCodeObj->getHospital());
-        
-        $foreigner = new PersonalIdCode('59002109561');
-        $this->assertEquals('Väljaspool Eestit', $foreigner->getHospital());
-        
-        $pelgulinna = new PersonalIdCode('59002104801');
-        $this->assertEquals('Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla', $pelgulinna->getHospital());
-        
-        $unknown = new PersonalIdCode('590021008001');
-        $this->assertEquals('Teadmata', $unknown->getHospital());
+        $hospitalTest = [
+           110 => 'Kuressaare Haigla',
+           190 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
+           220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
+           270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
+           370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
+           420 => 'Narva Haigla',
+           470 => 'Pärnu Haigla',
+           490 => 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla',
+           520 => 'Järvamaa Haigla (Paide)',
+           570 => 'Rakvere, Tapa haigla',
+           600 => 'Valga Haigla',
+           650 => 'Viljandi Haigla',
+           710 => 'Lõuna-Eesti Haigla (Võru), Põlva Haigla',
+           950 => 'Väljaspool Eestit',
+           800 => 'Teadmata',
+        ];
+
+        foreach ($hospitalTest as $hospitalCode => $expectedResult) {
+            $hospitalCode--;
+            if ($hospitalCode >= 799) {
+                $hospitalCode = $hospitalCode + 2;
+            }
+            $this->assertEquals($expectedResult, (new PersonalIdCode('4900210'.$hospitalCode.'1'))->getHospital());
+        }
     }
 
     /**
@@ -181,6 +196,24 @@ final class PersonalIdCodeTests extends TestCase
         $this->assertFalse($invalidPersonalCode->validate());
 
         $invalidPersonalCode = new PersonalIdCode('59002102761');
+        $this->assertFalse($invalidPersonalCode->validate());
+    
+        $validPersonalCode = new PersonalIdCode('51107121760');
+        $this->assertTrue($validPersonalCode->validate());
+
+        $invalidPersonalCode = new PersonalIdCode('59002102721');
+        $this->assertFalse($invalidPersonalCode->validate());
+
+        $invalidPersonalCode = new PersonalIdCode('590021');
+        $this->assertFalse($invalidPersonalCode->validate());
+        
+        $invalidPersonalCode = new PersonalIdCode('590021');
+        $this->assertFalse($invalidPersonalCode->validate());
+
+        $invalidPersonalCode = new PersonalIdCode(59002102721);
+        $this->assertFalse($invalidPersonalCode->validate());
+
+        $invalidPersonalCode = new PersonalIdCode('51127121760');
         $this->assertFalse($invalidPersonalCode->validate());
     }
 }

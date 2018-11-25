@@ -198,35 +198,31 @@ class PersonalIdCode
          * 651...710? = Lõuna-Eesti Haigla (Võru), Põlva Haigla
          */
 
-        $hospitalCode = substr($this->code, -4, 3);
+        $personHospitalCode = substr($this->code, -4, 3);
 
-        if ($hospitalCode < 11) {
-            return 'Kuressaare Haigla';
-        } elseif ($hospitalCode < 19) {
-            return 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu';
-        } elseif ($hospitalCode < 220) {
-            return 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu';
-        } elseif ($hospitalCode < 270) {
-            return 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)';
-        } elseif ($hospitalCode < 370) {
-            return 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla';
-        } elseif ($hospitalCode < 420) {
-            return 'Narva Haigla';
-        } elseif ($hospitalCode < 470) {
-            return 'Pärnu Haigla';
-        } elseif ($hospitalCode < 490) {
-            return 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla';
-        } elseif ($hospitalCode < 520) {
-            return 'Järvamaa Haigla (Paide)';
-        } elseif ($hospitalCode < 570) {
-            return 'Rakvere, Tapa haigla';
-        } elseif ($hospitalCode < 600) {
-            return 'Valga Haigla';
-        } elseif ($hospitalCode < 650) {
-            return 'Viljandi Haigla';
-        } elseif ($hospitalCode < 710) {
-            return 'Lõuna-Eesti Haigla (Võru), Põlva Haigla';
-        } elseif ($hospitalCode >= 950) {
+        $hospitals = [
+            110 => 'Kuressaare Haigla',
+            190 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
+            220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
+            270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
+            370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
+            420 => 'Narva Haigla',
+            470 => 'Pärnu Haigla',
+            490 => 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla',
+            520 => 'Järvamaa Haigla (Paide)',
+            570 => 'Rakvere, Tapa haigla',
+            600 => 'Valga Haigla',
+            650 => 'Viljandi Haigla',
+            710 => 'Lõuna-Eesti Haigla (Võru), Põlva Haigla',
+        ];
+
+        foreach ($hospitals as $hospitalCode => $hospitalName) {
+            if ($personHospitalCode < $hospitalCode) {
+                return $hospitalName;
+            }
+        }
+
+        if ($personHospitalCode >= 950) {
             return 'Väljaspool Eestit';
         }
 
@@ -284,7 +280,6 @@ class PersonalIdCode
             }
 
             $modulo = $total % 11;
-
             if ($modulo === 10) {
                 $modulo = 0;
             }
