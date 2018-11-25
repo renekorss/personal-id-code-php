@@ -236,10 +236,6 @@ class PersonalIdCode
      */
     public function validate() : bool
     {
-        if (!is_string($this->code)) {
-            return false;
-        }
-
         // Personal code is 11 digits long
         if (strlen($this->code) !== 11) {
             return false;
