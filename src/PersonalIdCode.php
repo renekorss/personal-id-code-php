@@ -174,56 +174,57 @@ class PersonalIdCode
     /**
      * Get hospital where person presumably was born
      *
+     * 001...010 = Kuressaare Haigla
+     * 011...019 = Tartu Ülikooli Naistekliinik, Tartumaa, Tartu
+     * 021...220 = Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla
+     * 221...270 = Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)
+     * 271...370 = Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla
+     * 371...420 = Narva Haigla
+     * 421...470 = Pärnu Haigla
+     * 471...490 = Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla
+     * 491...520 = Järvamaa Haigla (Paide)
+     * 521...570 = Rakvere, Tapa haigla
+     * 571...600 = Valga Haigla
+     * 601...650 = Viljandi Haigla
+     * 651...710? = Lõuna-Eesti Haigla (Võru), Põlva Haigla
+     *
+     * @source https://et.wikipedia.org/wiki/Isikukood#Haigla_tunnus
+     *
      * @return string Hospital name
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function getHospital()
     {
-        /*
-         * @source https://et.wikipedia.org/wiki/Isikukood#Haigla_tunnus
-         *
-         * 001...010 = Kuressaare Haigla
-         * 011...019 = Tartu Ülikooli Naistekliinik, Tartumaa, Tartu
-         * 021...220 = Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla
-         * 221...270 = Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)
-         * 271...370 = Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla
-         * 371...420 = Narva Haigla
-         * 421...470 = Pärnu Haigla
-         * 471...490 = Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla
-         * 491...520 = Järvamaa Haigla (Paide)
-         * 521...570 = Rakvere, Tapa haigla
-         * 571...600 = Valga Haigla
-         * 601...650 = Viljandi Haigla
-         * 651...710? = Lõuna-Eesti Haigla (Võru), Põlva Haigla
-         */
+        // Only for persons born before 2013
+        if ($this->getBirthYear() < 2013) {
+            $personHospitalCode = substr($this->code, -4, 3);
 
-        $personHospitalCode = substr($this->code, -4, 3);
+            $hospitals = [
+                110 => 'Kuressaare Haigla',
+                190 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
+                220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
+                270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
+                370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
+                420 => 'Narva Haigla',
+                470 => 'Pärnu Haigla',
+                490 => 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla',
+                520 => 'Järvamaa Haigla (Paide)',
+                570 => 'Rakvere, Tapa haigla',
+                600 => 'Valga Haigla',
+                650 => 'Viljandi Haigla',
+                710 => 'Lõuna-Eesti Haigla (Võru), Põlva Haigla',
+            ];
 
-        $hospitals = [
-            110 => 'Kuressaare Haigla',
-            190 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
-            220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
-            270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
-            370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
-            420 => 'Narva Haigla',
-            470 => 'Pärnu Haigla',
-            490 => 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla',
-            520 => 'Järvamaa Haigla (Paide)',
-            570 => 'Rakvere, Tapa haigla',
-            600 => 'Valga Haigla',
-            650 => 'Viljandi Haigla',
-            710 => 'Lõuna-Eesti Haigla (Võru), Põlva Haigla',
-        ];
-
-        foreach ($hospitals as $hospitalCode => $hospitalName) {
-            if ($personHospitalCode < $hospitalCode) {
-                return $hospitalName;
+            foreach ($hospitals as $hospitalCode => $hospitalName) {
+                if ($personHospitalCode < $hospitalCode) {
+                    return $hospitalName;
+                }
             }
-        }
 
-        if ($personHospitalCode >= 950) {
-            return 'Väljaspool Eestit';
+            if ($personHospitalCode >= 950) {
+                return 'Väljaspool Eestit';
+            }
         }
 
         return 'Teadmata';

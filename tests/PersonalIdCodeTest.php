@@ -162,6 +162,9 @@ final class PersonalIdCodeTests extends TestCase
             }
             $this->assertEquals($expectedResult, (new PersonalIdCode('4900210'.$hospitalCode.'1'))->getHospital());
         }
+
+        // Unknown if born after 2013
+        $this->assertEquals('Teadmata', (new PersonalIdCode('51302102731'))->getHospital());
     }
 
     /**

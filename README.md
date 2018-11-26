@@ -14,6 +14,47 @@ Estonian personal ID code validator and processor
 composer require renekorss/personal-id-code-php
 ````
 
+## Usage 
+
+````php
+use RKD\PersonalIdCode\PersonalIdCode;
+
+$id = new PersonalIdCode('39002102761');
+
+// These results are examples as of 2018-11-26
+echo $id->getGender(); // male
+
+$datetime = $id->getBirthDate(); // Datetime object
+echo $datetime->format('Y-m-d'); // 1990-02-10
+
+echo $id->getAge(); // 28
+echo $id->getBirthCentury(); // 1900
+
+// Birth year in different formats
+echo $id->getBirthYear(); // 1990
+echo $id->getBirthYear('y'); // 90
+
+// Birth month in different formats
+echo $id->getBirthMonth(); // 02
+echo $id->getBirthMonth('M'); // Feb
+echo $id->getBirthMonth('F'); // February
+
+// Birth day in different formats
+echo $id->getBirthDay(); // 10
+echo $id->getBirthDay('D'); // Sat
+echo $id->getBirthDay('l'); // Saturday
+
+// Presumable hospital where person was born
+echo $id->getHospital(); // Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla
+
+// Check validity
+if ($id->validate()) {
+    echo 'Valid personal ID code';
+} else {
+    echo 'Invalid personal ID code';  
+}
+````
+
 ## Tasks
 
 - `composer build` - build by running tests and all code checks
