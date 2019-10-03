@@ -22,10 +22,6 @@ jobs:
         extension-csv: dom
         coverage: xdebug
     - name: Install dependencies
-      if: matrix.php-versions != '7.4'
-      run: composer install --prefer-dist --no-interaction
-    - name: Install dependencies
-      if: matrix.php-versions == '7.4'
       run: composer install --prefer-dist --no-interaction --ignore-platform-reqs
     - name: PHP Code Sniffer
       if: matrix.php-versions == '7.2'
