@@ -34,12 +34,12 @@
   "scripts": {
     "build": [
       "@format",
-      "@tests",
+      "@test",
       "@phpmd",
       "@phpcs",
       "@docs"
     ],
-    "tests": "vendor/bin/phpunit",
+    "test": "vendor/bin/phpunit",
     "format": "vendor/bin/php-cs-fixer fix",
     "docs": "apigen generate src --destination docs",
     "phpmd": "phpmd ./src text cleancode,codesize,controversial,design,naming,unusedcode",
