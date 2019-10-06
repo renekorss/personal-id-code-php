@@ -39,10 +39,10 @@
       "@phpcs",
       "@docs"
     ],
-    "test": "vendor/bin/phpunit",
-    "format": "vendor/bin/php-cs-fixer fix",
-    "docs": "apigen generate src --destination docs",
-    "phpmd": "phpmd ./src text cleancode,codesize,controversial,design,naming,unusedcode",
-    "phpcs": "phpcs --report=full --extensions=php -p --standard=PSR2 ./src ./tests"
+    "test": "./vendor/bin/phpunit",
+    "format": "./vendor/bin//php-cs-fixer fix",
+    "docs": "./vendor/bin/apigen generate src --destination docs",
+    "phpmd": "./vendor/bin/phpmd ./src text cleancode,codesize,controversial,design,naming,unusedcode",
+    "phpcs": "./vendor/bin/phpcs --report=full --extensions=php -p --standard=PSR2 ./src ./tests"
   }
 }
