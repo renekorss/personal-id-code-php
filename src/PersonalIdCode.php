@@ -5,7 +5,7 @@
  * @link https://github.com/renekorss/personal-id-code-php/
  *
  * @author Rene Korss <rene.korss@gmail.com>
- * @copyright 2018 Rene Korss
+ * @copyright 2020 Rene Korss
  * @license MIT
  */
 
@@ -65,7 +65,7 @@ class PersonalIdCode
         // Odd number for male and even nubmer for female
         $genderNo = substr($this->code, 0, 1);
         $modulo = $genderNo % 2;
-  
+
         return $modulo === 0 ? self::GENDER_FEMALE : self::GENDER_MALE;
     }
 
