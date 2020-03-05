@@ -50,6 +50,15 @@ final class PersonalIdCodeTests extends TestCase
         $this->assertEquals($expectedDate, $this->personalCodeObj->getBirthDate());
     }
 
+    public function testCanGetBirthDateIssue1() : void
+    {
+        // Issue #1
+        $personalCodeObj = new PersonalIdCode('46402122210');
+        $expectedDate = new \Datetime('1964-02-12');
+
+        $this->assertEquals($expectedDate, $personalCodeObj->getBirthDate());
+    }
+
     public function testCanGetCurrentAge() : void
     {
         $expectedAge = (new \Datetime())->diff(new \Datetime('1990-02-10'))->y;

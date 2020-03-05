@@ -80,7 +80,7 @@ class PersonalIdCode
     public function getBirthDate() : Datetime
     {
         if (is_null($this->birthDate)) {
-            $year = substr($this->code, 1, 2);
+            $year = $this->getBirthCentury() + substr($this->code, 1, 2);
             $month = substr($this->code, 3, 2);
             $day = substr($this->code, 5, 2);
 
