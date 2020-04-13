@@ -5,11 +5,14 @@
  * @link https://github.com/renekorss/personal-id-code-php/
  *
  * @author Rene Korss <rene.korss@gmail.com>
- * @copyright 2018 Rene Korss
+ * @copyright 2020 Rene Korss
  * @license MIT
  */
 
 namespace RKD\PersonalIdCode;
+
+use Datetime;
+use InvalidArgumentException;
 
 /**
  * Personal ID code class
@@ -65,7 +68,7 @@ class PersonalIdCode
         // Odd number for male and even nubmer for female
         $genderNo = substr($this->code, 0, 1);
         $modulo = $genderNo % 2;
-  
+
         return $modulo === 0 ? self::GENDER_FEMALE : self::GENDER_MALE;
     }
 
@@ -74,14 +77,14 @@ class PersonalIdCode
      *
      * @return \Datetime Person birthday
      */
-    public function getBirthDate() : \Datetime
+    public function getBirthDate() : Datetime
     {
         if (is_null($this->birthDate)) {
-            $year = substr($this->code, 1, 2);
+            $year = $this->getBirthCentury() + substr($this->code, 1, 2);
             $month = substr($this->code, 3, 2);
             $day = substr($this->code, 5, 2);
 
-            $this->birthDate = new \Datetime($year.'-'.$month.'-'.$day);
+            $this->birthDate = new Datetime($year.'-'.$month.'-'.$day);
         }
 
         return $this->birthDate;
@@ -94,10 +97,10 @@ class PersonalIdCode
      *
      * @return int Person age
      */
-    public function getAge(\Datetime $date = null) : int
+    public function getAge(Datetime $date = null) : int
     {
         if (is_null($date)) {
-            $date = new \Datetime();
+            $date = new Datetime();
         }
 
         return $date->diff($this->getBirthDate())->y;
@@ -125,7 +128,7 @@ class PersonalIdCode
     {
         $allowedFormats = ['L', 'o', 'Y', 'y'];
         if (!in_array($format, $allowedFormats)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Not allowed year format. Allowed values are: '.implode($allowedFormats)
             );
         }
@@ -144,7 +147,7 @@ class PersonalIdCode
     {
         $allowedFormats = ['F', 'm', 'M', 'n', 't'];
         if (!in_array($format, $allowedFormats)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Not allowed month format. Allowed values are: '.implode($allowedFormats)
             );
         }
@@ -163,7 +166,7 @@ class PersonalIdCode
     {
         $allowedFormats = ['d', 'D', 'j', 'l', 'N', 'S', 'w', 'z'];
         if (!in_array($format, $allowedFormats)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Not allowed day format. Allowed values are: '.implode($allowedFormats)
             );
         }

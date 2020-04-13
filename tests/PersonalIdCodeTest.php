@@ -1,11 +1,11 @@
 <?php
 /**
- * RKD Blockchain.
+ * RKD Personal ID code.
  *
  * @link https://github.com/renekorss/personal-id-code-php/
  *
  * @author Rene Korss <rene.korss@gmail.com>
- * @copyright 2018 Rene Korss
+ * @copyright 2020 Rene Korss
  * @license MIT
  */
 
@@ -48,6 +48,15 @@ final class PersonalIdCodeTests extends TestCase
     {
         $expectedDate = new \Datetime('1990-02-10');
         $this->assertEquals($expectedDate, $this->personalCodeObj->getBirthDate());
+    }
+
+    public function testCanGetBirthDateIssue1() : void
+    {
+        // Issue #1
+        $personalCodeObj = new PersonalIdCode('46402122210');
+        $expectedDate = new \Datetime('1964-02-12');
+
+        $this->assertEquals($expectedDate, $personalCodeObj->getBirthDate());
     }
 
     public function testCanGetCurrentAge() : void
@@ -200,7 +209,7 @@ final class PersonalIdCodeTests extends TestCase
 
         $invalidPersonalCode = new PersonalIdCode('59002102761');
         $this->assertFalse($invalidPersonalCode->validate());
-    
+
         $validPersonalCode = new PersonalIdCode('51107121760');
         $this->assertTrue($validPersonalCode->validate());
 
@@ -209,7 +218,7 @@ final class PersonalIdCodeTests extends TestCase
 
         $invalidPersonalCode = new PersonalIdCode('590021');
         $this->assertFalse($invalidPersonalCode->validate());
-        
+
         $invalidPersonalCode = new PersonalIdCode('590021');
         $this->assertFalse($invalidPersonalCode->validate());
 
