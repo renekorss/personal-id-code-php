@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
  * @author Rene Korss <rene.korss@gmail.com>
  */
 
-final class PersonalIdCodeTests extends TestCase
+final class PersonalIdCodeTest extends TestCase
 {
     /**
      * Instance of \RKD\PersonalIdCode
@@ -38,10 +38,10 @@ final class PersonalIdCodeTests extends TestCase
 
     public function testCanGetGender() : void
     {
-        $this->assertEquals(PersonalIdCode::GENDER_MALE, $this->personalCodeObj->getGender());
+        $this->assertSame(PersonalIdCode::GENDER_MALE, $this->personalCodeObj->getGender());
 
         $femaleId = new PersonalIdCode('49002102761');
-        $this->assertEquals(PersonalIdCode::GENDER_FEMALE, $femaleId->getGender());
+        $this->assertSame(PersonalIdCode::GENDER_FEMALE, $femaleId->getGender());
     }
 
     public function testCanGetBirthDate() : void
@@ -62,39 +62,39 @@ final class PersonalIdCodeTests extends TestCase
     public function testCanGetCurrentAge() : void
     {
         $expectedAge = (new \Datetime())->diff(new \Datetime('1990-02-10'))->y;
-        $this->assertEquals($expectedAge, $this->personalCodeObj->getAge());
+        $this->assertSame($expectedAge, $this->personalCodeObj->getAge());
     }
 
     public function testCanGetAgeForDate() : void
     {
         $baseDate = new \Datetime('2018-11-25');
-        $this->assertEquals(28, $this->personalCodeObj->getAge($baseDate));
+        $this->assertSame(28, $this->personalCodeObj->getAge($baseDate));
 
         // Person is year older on/after birthday
         $baseDate = new \Datetime('2019-02-10');
-        $this->assertEquals(29, $this->personalCodeObj->getAge($baseDate));
+        $this->assertSame(29, $this->personalCodeObj->getAge($baseDate));
 
         // 50th birthday
         $baseDate = new \Datetime('2040-02-10');
-        $this->assertEquals(50, $this->personalCodeObj->getAge($baseDate));
+        $this->assertSame(50, $this->personalCodeObj->getAge($baseDate));
     }
 
     public function testCanGetBirthCentury() : void
     {
         $nineteenthCentury = new PersonalIdCode('19002102761');
-        $this->assertEquals(1800, $nineteenthCentury->getBirthCentury());
+        $this->assertSame(1800, $nineteenthCentury->getBirthCentury());
 
         $twentiethCentury = new PersonalIdCode('49002102761');
-        $this->assertEquals(1900, $twentiethCentury->getBirthCentury());
+        $this->assertSame(1900, $twentiethCentury->getBirthCentury());
 
         $twentyFirstCentury = new PersonalIdCode('59002102761');
-        $this->assertEquals(2000, $twentyFirstCentury->getBirthCentury());
+        $this->assertSame(2000, $twentyFirstCentury->getBirthCentury());
     }
 
     public function testCanGetBirthYear() : void
     {
         // Default: A full numeric representation of a year, 4 digits
-        $this->assertEquals(1990, $this->personalCodeObj->getBirthYear());
+        $this->assertSame('1990', $this->personalCodeObj->getBirthYear());
 
         $formatsAndExpectedValues = [
             'L' => 0, // Whether it's a leap year
@@ -110,7 +110,7 @@ final class PersonalIdCodeTests extends TestCase
     public function testCanGetBirthMonth() : void
     {
         // Default: Numeric representation of a month, with leading zeros
-        $this->assertEquals(02, $this->personalCodeObj->getBirthMonth());
+        $this->assertSame('02', $this->personalCodeObj->getBirthMonth());
 
         $formatsAndExpectedValues = [
             'F' => 'February', // A full textual representation of a month, such as January or March
@@ -127,7 +127,7 @@ final class PersonalIdCodeTests extends TestCase
     public function testCanGetBirthDay() : void
     {
         // Default: Day of the month, 2 digits with leading zeros
-        $this->assertEquals(10, $this->personalCodeObj->getBirthDay());
+        $this->assertSame('10', $this->personalCodeObj->getBirthDay());
 
         $formatsAndExpectedValues = [
             'D' => 'Sat', // A textual representation of a day, three letters
@@ -169,11 +169,11 @@ final class PersonalIdCodeTests extends TestCase
             if ($hospitalCode >= 799) {
                 $hospitalCode = $hospitalCode + 2;
             }
-            $this->assertEquals($expectedResult, (new PersonalIdCode('4900210'.$hospitalCode.'1'))->getHospital());
+            $this->assertSame($expectedResult, (new PersonalIdCode('4900210'.$hospitalCode.'1'))->getHospital());
         }
 
         // Unknown if born after 2013
-        $this->assertEquals('Teadmata', (new PersonalIdCode('51302102731'))->getHospital());
+        $this->assertSame('Teadmata', (new PersonalIdCode('51302102731'))->getHospital());
     }
 
     /**
@@ -181,7 +181,7 @@ final class PersonalIdCodeTests extends TestCase
      */
     public function testCantUseInvalidYearFormat() : void
     {
-        $this->assertEquals(1990, $this->personalCodeObj->getBirthYear('invalidFormat'));
+        $this->assertSame('1990', $this->personalCodeObj->getBirthYear('invalidFormat'));
     }
 
     /**
@@ -189,7 +189,7 @@ final class PersonalIdCodeTests extends TestCase
      */
     public function testCantUseInvalidMonthFormat() : void
     {
-        $this->assertEquals(02, $this->personalCodeObj->getBirthMonth('invalidFormat'));
+        $this->assertSame('02', $this->personalCodeObj->getBirthMonth('invalidFormat'));
     }
 
     /**
@@ -197,7 +197,7 @@ final class PersonalIdCodeTests extends TestCase
      */
     public function testCantUseInvalidDayFormat() : void
     {
-        $this->assertEquals(10, $this->personalCodeObj->getBirthDay('invalidFormat'));
+        $this->assertSame('10', $this->personalCodeObj->getBirthDay('invalidFormat'));
     }
 
     public function testCanValidate() : void
