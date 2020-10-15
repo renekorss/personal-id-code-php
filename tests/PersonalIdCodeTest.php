@@ -147,21 +147,21 @@ final class PersonalIdCodeTest extends TestCase
     public function testCanGetHospital() : void
     {
         $hospitalTest = [
-           110 => 'Kuressaare Haigla',
-           190 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
-           220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
-           270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
-           370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
-           420 => 'Narva Haigla',
-           470 => 'Pärnu Haigla',
-           490 => 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla',
-           520 => 'Järvamaa Haigla (Paide)',
-           570 => 'Rakvere, Tapa haigla',
-           600 => 'Valga Haigla',
-           650 => 'Viljandi Haigla',
-           710 => 'Lõuna-Eesti Haigla (Võru), Põlva Haigla',
-           950 => 'Väljaspool Eestit',
-           800 => 'Teadmata',
+            '011' => 'Kuressaare Haigla',
+            '019' => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
+            220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
+            270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
+            370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
+            420 => 'Narva Haigla',
+            470 => 'Pärnu Haigla',
+            490 => 'Pelgulinna Sünnitusmaja (Tallinn), Haapsalu haigla',
+            520 => 'Järvamaa Haigla (Paide)',
+            570 => 'Rakvere, Tapa haigla',
+            600 => 'Valga Haigla',
+            650 => 'Viljandi Haigla',
+            710 => 'Lõuna-Eesti Haigla (Võru), Põlva Haigla',
+            950 => 'Väljaspool Eestit',
+            800 => 'Teadmata',
         ];
 
         foreach ($hospitalTest as $hospitalCode => $expectedResult) {
