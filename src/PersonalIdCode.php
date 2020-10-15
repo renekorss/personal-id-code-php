@@ -201,11 +201,11 @@ class PersonalIdCode
     {
         // Only for persons born before 2013
         if ($this->getBirthYear() < 2013) {
-            $personHospitalCode = substr($this->code, -4, 3);
+            $personHospitalCode = (int)substr($this->code, -4, 3);
 
             $hospitals = [
-                110 => 'Kuressaare Haigla',
-                190 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
+                 11 => 'Kuressaare Haigla',
+                 19 => 'Tartu Ülikooli Naistekliinik, Tartumaa, Tartu',
                 220 => 'Ida-Tallinna Keskhaigla, Pelgulinna sünnitusmaja, Hiiumaa, Keila, Rapla haigla, Loksa haigla',
                 270 => 'Ida-Viru Keskhaigla (Kohtla-Järve, endine Jõhvi)',
                 370 => 'Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla',
