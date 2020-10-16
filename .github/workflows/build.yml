@@ -30,10 +30,10 @@ jobs:
       if: matrix.php-versions == '7.2'
       run: vendor/bin/phpmd ./src text cleancode,codesize,controversial,design,naming,unusedcode
     - name: PHP Unit Tests with coverage
-      if: matrix.php-versions == '7.2'
+      if: matrix.php-versions == '7.4'
       run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
     - name: PHP Unit Tests
-      if: matrix.php-versions != '7.2'
+      if: matrix.php-versions != '7.4'
       run: vendor/bin/phpunit
     - name: Send to coveralls
       if: matrix.php-versions == '7.2'

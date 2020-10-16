@@ -11,6 +11,7 @@
 
 namespace RKD\PersonalIdCode;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -176,27 +177,21 @@ final class PersonalIdCodeTest extends TestCase
         $this->assertSame('Teadmata', (new PersonalIdCode('51302102731'))->getHospital());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCantUseInvalidYearFormat() : void
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->assertSame('1990', $this->personalCodeObj->getBirthYear('invalidFormat'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCantUseInvalidMonthFormat() : void
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->assertSame('02', $this->personalCodeObj->getBirthMonth('invalidFormat'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCantUseInvalidDayFormat() : void
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->assertSame('10', $this->personalCodeObj->getBirthDay('invalidFormat'));
     }
 
