@@ -5,7 +5,7 @@
  * @link https://github.com/renekorss/personal-id-code-php/
  *
  * @author Rene Korss <rene.korss@gmail.com>
- * @copyright 2020 Rene Korss
+ * @copyright 2021 Rene Korss
  * @license MIT
  */
 
@@ -273,7 +273,7 @@ class PersonalIdCode
         $modulo = $total % 11;
 
         // Second round
-        if ($modulo === 10) {
+        if ($modulo >= 10) {
             $total = 0;
 
             for ($i = 0; $i < 10; $i++) {
@@ -282,7 +282,7 @@ class PersonalIdCode
             }
 
             $modulo = $total % 11;
-            if ($modulo === 10) {
+            if ($modulo >= 10) {
                 $modulo = 0;
             }
         }
