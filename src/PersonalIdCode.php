@@ -274,6 +274,8 @@ class PersonalIdCode
 
         // Second round
         if ($modulo === 10) {
+            $total = 0;
+
             for ($i = 0; $i < 10; $i++) {
                 $multiplier = $i + 3;
                 $total += substr($this->code, $i, 1) * ($multiplier > 9 ? $multiplier - 9 : $multiplier);
