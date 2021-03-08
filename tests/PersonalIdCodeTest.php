@@ -223,4 +223,11 @@ final class PersonalIdCodeTest extends TestCase
         $invalidPersonalCode = new PersonalIdCode('51127121760');
         $this->assertFalse($invalidPersonalCode->validate());
     }
+
+    public function testCorrectControlNumberIssue5() : void
+    {
+        // Issue #5
+        $personalCodeObj = new PersonalIdCode('38605230034');
+        $this->assertTrue($personalCodeObj->validate());
+    }
 }
