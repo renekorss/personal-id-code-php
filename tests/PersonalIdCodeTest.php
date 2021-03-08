@@ -5,7 +5,7 @@
  * @link https://github.com/renekorss/personal-id-code-php/
  *
  * @author Rene Korss <rene.korss@gmail.com>
- * @copyright 2020 Rene Korss
+ * @copyright 2021 Rene Korss
  * @license MIT
  */
 
