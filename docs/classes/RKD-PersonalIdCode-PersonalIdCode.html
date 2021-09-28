@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>    API Documentation &raquo; \RKD\PersonalIdCode\PersonalIdCode
+    <title>    Documentation &raquo; \RKD\PersonalIdCode\PersonalIdCode
 </title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
@@ -33,7 +33,7 @@
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span> <span class="icon-bar"></span>
                     <span class="icon-bar"></span> </a>
-                <a class="brand" href="../index.html">API Documentation</a>
+                <a class="brand" href="../index.html">Documentation</a>
 
                 <div class="nav-collapse">
                     <ul class="nav">
@@ -43,7 +43,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                                                     <li><a>Namespaces</a></li>
-                                                                        <li><a href="../namespaces/RKD.html">RKD</a></li>
+                                                                        <li><a href="../\RKD">RKD</a></li>
                                                                                                                                 </ul>
                         </li>
                         <li class="dropdown" id="charts-menu">
@@ -197,32 +197,32 @@
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
             <ul>
-                                <li class="constant ">
+                                <li class="constant public">
                     <a href="#constant_FORMAT_DAY_DEFAULT" title="FORMAT_DAY_DEFAULT :: ">
                         <span class="description"></span><pre>FORMAT_DAY_DEFAULT</pre>
                     </a>
                 </li>
-                                <li class="constant ">
+                                <li class="constant public">
                     <a href="#constant_FORMAT_MONTH_DEFAULT" title="FORMAT_MONTH_DEFAULT :: ">
                         <span class="description"></span><pre>FORMAT_MONTH_DEFAULT</pre>
                     </a>
                 </li>
-                                <li class="constant ">
+                                <li class="constant public">
                     <a href="#constant_FORMAT_YEAR_DEFAULT" title="FORMAT_YEAR_DEFAULT :: ">
                         <span class="description"></span><pre>FORMAT_YEAR_DEFAULT</pre>
                     </a>
                 </li>
-                                <li class="constant ">
+                                <li class="constant public">
                     <a href="#constant_GENDER_FEMALE" title="GENDER_FEMALE :: ">
                         <span class="description"></span><pre>GENDER_FEMALE</pre>
                     </a>
                 </li>
-                                <li class="constant ">
+                                <li class="constant public">
                     <a href="#constant_GENDER_MALE" title="GENDER_MALE :: ">
                         <span class="description"></span><pre>GENDER_MALE</pre>
                     </a>
                 </li>
-                                <li class="constant ">
+                                <li class="constant public">
                     <a href="#constant_PERSONAL_CODE_REGEX" title="PERSONAL_CODE_REGEX :: ">
                         <span class="description"></span><pre>PERSONAL_CODE_REGEX</pre>
                     </a>
@@ -252,6 +252,7 @@
                                     <td>
                                                                                     
                                                                                 <p>Rene Korss <a href="mailto:rene.korss@gmail.com">rene.korss@gmail.com</a></p>
+
                                     </td>
                                 </tr>
                                                                                                                 <tr>
@@ -260,16 +261,16 @@
                                                                             </th>
                                     <td>
                                                                                     
-                                                                                <p>Default</p>
+                                                                                
                                     </td>
                                 </tr>
-                                                                                                                                                                                </table>
+                                                                                                                            </table>
 
                     <h3><i class="icon-custom icon-method"></i> Methods</h3>
                                                                 <a id="method___construct"></a>
                         <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
                             <h2>Constructor</h2>
-                            <pre>__construct(string $code) </pre>
+                            <pre>__construct(stringcode) : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -290,10 +291,13 @@
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$code</h4>
-                                                <code>string</code><p><p>Personal identification code</p></p>
+                                                <h4>code</h4>
+                                                <code>string</code><p><p>Personal identification code</p>
+</p>
                                             </div>
                                                                             
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p></p>
                                                                     </div>
                             </div>
 
@@ -301,7 +305,7 @@
                                             <a id="method_getAge"></a>
                         <div class="element clickable method public  method_getAge" data-toggle="collapse" data-target=".method_getAge .collapse">
                             <h2>Get person age</h2>
-                            <pre>getAge(\Datetime $date = null) : integer</pre>
+                            <pre>getAge(\Datetimedate = null) : int</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -315,12 +319,14 @@
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$date</h4>
-                                                <code>\Datetime</code><p><p>Optional \Datetime from which to calculate age</p></p>
+                                                <h4>date</h4>
+                                                <code>\Datetime</code><p><p>Optional \Datetime from which to calculate age</p>
+</p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
-                                        <code>integer</code><p><p>Person age</p></p>
+                                        <code>int</code><p><p>Person age</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -328,7 +334,7 @@
                                             <a id="method_getBirthCentury"></a>
                         <div class="element clickable method public  method_getBirthCentury" data-toggle="collapse" data-target=".method_getBirthCentury .collapse">
                             <h2>Get person birth century</h2>
-                            <pre>getBirthCentury() : integer</pre>
+                            <pre>getBirthCentury() : int</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -338,18 +344,12 @@
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                                                                     </table>
 
                                     
                                                                             <h3>Response</h3>
-                                        <code>integer</code><p><p>Birth century</p></p>
+                                        <code>int</code><p><p>Birth century</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -367,18 +367,12 @@
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                                                                     </table>
 
                                     
                                                                             <h3>Response</h3>
-                                        <code>\Datetime</code><p><p>Person birthday</p></p>
+                                        <code>\Datetime</code><p><p>Person birthday</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -386,7 +380,7 @@
                                             <a id="method_getBirthDay"></a>
                         <div class="element clickable method public  method_getBirthDay" data-toggle="collapse" data-target=".method_getBirthDay .collapse">
                             <h2>Get birth day</h2>
-                            <pre>getBirthDay(string $format = self::FORMAT_DAY_DEFAULT) : string</pre>
+                            <pre>getBirthDay(stringformat = self::FORMAT_DAY_DEFAULT) : string</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -400,12 +394,14 @@
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$format</h4>
-                                                <code>string</code><p><p>Desired format. Defaults to 'd', e.g 07</p></p>
+                                                <h4>format</h4>
+                                                <code>string</code><p><p>Desired format. Defaults to 'd', e.g 07</p>
+</p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
-                                        <code>string</code><p><p>Person birth day</p></p>
+                                        <code>string</code><p><p>Person birth day</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -413,7 +409,7 @@
                                             <a id="method_getBirthMonth"></a>
                         <div class="element clickable method public  method_getBirthMonth" data-toggle="collapse" data-target=".method_getBirthMonth .collapse">
                             <h2>Get birth month</h2>
-                            <pre>getBirthMonth(string $format = self::FORMAT_MONTH_DEFAULT) : string</pre>
+                            <pre>getBirthMonth(stringformat = self::FORMAT_MONTH_DEFAULT) : string</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -427,12 +423,14 @@
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$format</h4>
-                                                <code>string</code><p><p>Desired format. Defaults to 'm', e.g 05</p></p>
+                                                <h4>format</h4>
+                                                <code>string</code><p><p>Desired format. Defaults to 'm', e.g 05</p>
+</p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
-                                        <code>string</code><p><p>Person birth month</p></p>
+                                        <code>string</code><p><p>Person birth month</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -440,7 +438,7 @@
                                             <a id="method_getBirthYear"></a>
                         <div class="element clickable method public  method_getBirthYear" data-toggle="collapse" data-target=".method_getBirthYear .collapse">
                             <h2>Get birth year</h2>
-                            <pre>getBirthYear(string $format = self::FORMAT_YEAR_DEFAULT) : string</pre>
+                            <pre>getBirthYear(stringformat = self::FORMAT_YEAR_DEFAULT) : string</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -454,12 +452,14 @@
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
-                                                <h4>$format</h4>
-                                                <code>string</code><p><p>Desired format. Defaults to 'Y', e.g 2018</p></p>
+                                                <h4>format</h4>
+                                                <code>string</code><p><p>Desired format. Defaults to 'Y', e.g 2018</p>
+</p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
-                                        <code>string</code><p><p>Person birth year</p></p>
+                                        <code>string</code><p><p>Person birth year</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -467,7 +467,7 @@
                                             <a id="method_getControlNumber"></a>
                         <div class="element clickable method private  method_getControlNumber" data-toggle="collapse" data-target=".method_getControlNumber .collapse">
                             <h2>Get personal code control number</h2>
-                            <pre>getControlNumber() </pre>
+                            <pre>getControlNumber() : mixed</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -477,13 +477,6 @@
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                                     <tr>
                                                 <th>
                                                     
@@ -494,6 +487,8 @@
                                                                                                                     </table>
 
                                     
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p></p>
                                                                     </div>
                             </div>
 
@@ -511,18 +506,12 @@
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                                                                     </table>
 
                                     
                                                                             <h3>Response</h3>
-                                        <code>string</code><p><p>Person gender</p></p>
+                                        <code>string</code><p><p>Person gender</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -549,7 +538,8 @@
 521...570 = Rakvere, Tapa haigla
 571...600 = Valga Haigla
 601...650 = Viljandi Haigla
-651...710? = Lõuna-Eesti Haigla (Võru), Põlva Haigla</p></div>
+651...710? = Lõuna-Eesti Haigla (Võru), Põlva Haigla</p>
+</div>
 
                                     <table class="table">
                                                                                     <tr>
@@ -558,7 +548,7 @@
                                                 </th>
                                                 <td>
                                                                                                                                                                         
-                                                                                                                                                                        <p><a href="https://et.wikipedia.org/wiki/Isikukood#Haigla_tunnus">https://et.wikipedia.org/wiki/Isikukood#Haigla_tunnus</a></p>
+                                                                                                                                                                        
                                                                                                     </td>
                                             </tr>
                                                                                     <tr>
@@ -568,20 +558,15 @@
                                                 <td>
                                                                                                                                                                         
                                                                                                                                                                         <p>(PHPMD.CyclomaticComplexity)</p>
-                                                                                                    </td>
-                                            </tr>
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
+
                                                                                                     </td>
                                             </tr>
                                                                                                                     </table>
 
                                     
                                                                             <h3>Response</h3>
-                                        <code>string</code><p><p>Hospital name</p></p>
+                                        <code>string</code><p><p>Hospital name</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -589,7 +574,7 @@
                                             <a id="method_validate"></a>
                         <div class="element clickable method public  method_validate" data-toggle="collapse" data-target=".method_validate .collapse">
                             <h2>Validate person code</h2>
-                            <pre>validate() : boolean</pre>
+                            <pre>validate() : bool</pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -599,18 +584,12 @@
                                     <div class="long_description"></div>
 
                                     <table class="table">
-                                                                                    <tr>
-                                                <th>
-                                                    
-                                                </th>
-                                                <td>
-                                                                                                    </td>
-                                            </tr>
                                                                                                                     </table>
 
                                     
                                                                             <h3>Response</h3>
-                                        <code>boolean</code><p><p>True if valid personal code, false otherwise</p></p>
+                                        <code>bool</code><p><p>True if valid personal code, false otherwise</p>
+</p>
                                                                     </div>
                             </div>
 
@@ -804,9 +783,9 @@
                 <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
                     
     
-    <li><span class="divider">\</span><a href="../namespaces/RKD.PersonalIdCode.html">PersonalIdCode</a></li>
+    <li><span class="divider">\</span><a href="../\RKD\PersonalIdCode">PersonalIdCode</a></li>
 
-                <li class="active"><span class="divider">\</span><a href="../classes/RKD.PersonalIdCode.PersonalIdCode.html">PersonalIdCode</a></li>
+                <li class="active"><span class="divider">\</span><a href="../\RKD\PersonalIdCode\PersonalIdCode">PersonalIdCode</a></li>
             </ul>
         </div>
     </div>
@@ -814,10 +793,10 @@
     </div>
 
         <footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
-            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Mon, 26 Nov 2018 16:49:13 +0000.<br/>
+            Template is built using <a href="https://getbootstrap.com/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="https://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="https://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Tue, 28 Sep 2021 18:12:46 +0000.<br/>
     </footer>
     </body>
 </html>
