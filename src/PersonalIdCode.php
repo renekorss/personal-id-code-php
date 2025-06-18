@@ -97,7 +97,7 @@ class PersonalIdCode
      *
      * @return int Person age
      */
-    public function getAge(Datetime $date = null) : int
+    public function getAge(?Datetime $date = null) : int
     {
         if (is_null($date)) {
             $date = new Datetime();

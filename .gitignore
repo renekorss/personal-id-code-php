@@ -3,3 +3,4 @@ composer.phar
 /.vscode/
 .phpunit.result.cache
 .phpdoc
+.phpunit.cache/test-results
