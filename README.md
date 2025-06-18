@@ -1,6 +1,5 @@
 [![Actions Status](https://github.com/renekorss/personal-id-code-php/workflows/build/badge.svg)](https://github.com/renekorss/personal-id-code-php/actions)
 [![Coverage Status](https://coveralls.io/repos/renekorss/personal-id-code-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/renekorss/personal-id-code-php?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/634a0a6cf7c84e74aeedb2989bc299c5)](https://www.codacy.com/app/renekorss/personal-id-code-php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=renekorss/personal-id-code-php&amp;utm_campaign=Badge_Grade)
 [![Latest Stable Version](https://poser.pugx.org/renekorss/personal-id-code-php/v/stable)](https://packagist.org/packages/renekorss/personal-id-code-php)
 [![Total Downloads](https://poser.pugx.org/renekorss/personal-id-code-php/downloads)](https://packagist.org/packages/renekorss/personal-id-code-php)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -8,13 +7,13 @@
 # Personal ID code
 Estonian personal ID code validator and processor
 
-## Install 
+## Install
 
 ````bash
 composer require renekorss/personal-id-code-php
 ````
 
-## Usage 
+## Usage
 
 ````php
 use RKD\PersonalIdCode\PersonalIdCode;
@@ -51,7 +50,7 @@ echo $id->getHospital(); // Maarjamõisa Kliinikum (Tartu), Jõgeva Haigla
 if ($id->validate()) {
     echo 'Valid personal ID code';
 } else {
-    echo 'Invalid personal ID code';  
+    echo 'Invalid personal ID code';
 }
 ````
 
